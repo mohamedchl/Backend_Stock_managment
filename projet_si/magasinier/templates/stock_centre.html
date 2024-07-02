@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Produits</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleModal.css' %}">
+    <script src="{% static 'js/stock_centre.js' %}"></script>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{% static 'css/list2.css' %}"
+      type="text/css"
+    />
+</head>
+<body>
+  <a href="{% url 'gestion_responsable' selected_center=selected_center %}" style="all: unset"><div class="logo"  onmouseover="document.querySelector('.fa-arrow-rotate-left').style.color='rgba(255, 255, 255, 0.39)';
+    this.style.color='rgba(255, 255, 255, 0.39)';"onmouseout="document.querySelector('.fa-arrow-rotate-left').style.color='rgb(255, 255, 255)';
+    this.style.color='rgb(255, 255, 255)'; " style=" position: absolute;
+        top: 0;
+        left: 0;
+        
+        cursor: pointer;
+        text-wrap: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        font-family: 'Bubblegum Sans', sans-serif;
+        color: rgb(255, 255, 255);
+        font-size: 1.2rem;
+        background-color: transparent;
+        border-radius: 30px;
+        transition: 0.2s;
+        font-weight: 100;
+        margin-left: 28px;
+        width: 10%;
+        margin-top: 10px;"><i class="fa-solid fa-arrow-rotate-left" style="font-size: 1.3rem;color: white; margin-right: 10px;"></i>page precedente</div></a>
+    <a href="{% url 'gestion_responsable' selected_center=selected_center %}" style="all: unset"><div class="logo"  onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.39)';"onmouseout="this.style.backgroundColor='transparent'; " style=" position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        text-wrap: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        font-family: 'Bubblegum Sans', sans-serif;
+        color: rgb(255, 255, 255);
+        font-size: 1.5rem;
+        background-color: transparent;
+        border-radius: 30px;
+        transition: 0.8s;
+        font-weight: 100;
+        width: 20%;
+        margin-top: 10px;"><i class="fa-solid fa-store" style="font-size: 1.5rem;color: white; margin-right: 10px;"></i>votre store virtuel</div></a>
+    <h4> la liste des Produits primaire disponibles : </h4> 
+    <form method="GET" action="{% url 'afficher_stock_centre' selected_center=selected_center %}">
+        <label for="chercher">entre nom produit :</label>
+        <input type="text" id="chercher" name="chercher_primaire">
+    
+        <button type="submit">Filtrer</button>
+    </form>
+    <table>
+        <tr class="table-info">
+            
+
+            <th>Nome de produit</th>
+            <th>Designation de produit</th>
+            <th>la Quantité de produit</th>
+            <th>le prix unitaire de produit</th>
+            
+        </tr>
+         {% for s in stock %}
+         <tr>
+        
+  
+         <td> {{s.nomP}} </td>
+         <td> {{s.designation}} </td>
+         <td> {{s.qte}} </td>
+         <td> {{s.prix_unitaire}} </td>
+        
+         </tr>
+         {% endfor%} 
+    </table>
+    <h4 style="margin-top: 3px;"> listes des reproduits : </h4> 
+    <form method="GET" action="{% url 'afficher_stock_centre' selected_center=selected_center %}">
+        <label for="chercher2">Entre le nom du produit :</label>
+        <input type="text" id="chercher2" name="chercher_reproduit">
+        
+        <button type="submit">Filtrer</button>
+    </form>
+    <table>
+        <tr class="table-info">
+            
+            <th>Nome de reproduit</th>
+            <th>Designation de reproduit</th>
+            <th>la Quantité de reproduit</th>
+            <th>le prix unitaire de reproduit</th>
+            <th>modifier</th>
+            <th>ajouter</th>
+            <th>Supprimer</th>
+        </tr>
+         {% for r in rep %}
+         <tr>
+        
+         <td> {{r.nomP}} </td>
+         <td> {{r.designation}} </td>
+         <td> {{r.qte_reProduit}} </td>
+         <td> {{r.prix_unitaire}} </td>
+         <td><a href="{% url 'modifier_reProduit' selected_center=selected_center reproduit_id=r.id %}" class="btn btn-outline-success"> Modifier </a></td>
+         <td><a href="{% url 'ajouter_qte_reproduit' selected_center=selected_center reproduit_id=r.id %}" class="btn btn-outline-success"> ajouter quantite </a></td>
+         <td><a href="#" class="btn btn-outline-danger"  onclick="confirmDelete('{{ selected_center }}','{{ r.id }}')">Supprimer</a></td>
+         </tr>
+         {% endfor%} 
+    </table>
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Etes-vous sur de supprimer cette achat ?</p>
+            <button class="confirm-button">Supprimer</button>
+            <button class="cancel-button">Annuler</button>
+        </div>
+    </div>
+</body>
+</html>

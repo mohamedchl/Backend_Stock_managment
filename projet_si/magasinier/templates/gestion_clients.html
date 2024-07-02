@@ -1,0 +1,50 @@
+    
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME</title>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{% static 'css/stylegerercentre.css' %}"
+      type="text/css"
+    />
+  </head>
+  <body>
+
+<div class="header">
+
+  <nav><div class="logo" style="font-size: 1.5rem;"><a href="{% url 'magazinier' %}" style="all: unset"><i class="fa-solid fa-store" style="color: white; margin-right: 10px;font-size: 1.5rem;"></i>votre store virtuel</a></div>
+    </nav>
+    <div class="inner-header ">
+    <a href="{% url 'choose_client' %}">vendre pour un client</a>
+    <hr>
+    <a href="{% url 'list_vente' %}">check list des ventes</a>
+    <hr><a href="{% url 'regle_credit' %}">check list des Credit</a>
+    <hr><a href="{% url 'list_client' %}">check list des Client</a>
+    </div>
+    
+   
+    <div>
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.5)" />
+    <use xlink:href="#gentle-wave" x="48" y="6" fill="rgba(255,255,255,0.3)" />
+    <use xlink:href="#gentle-wave" x="48" y="8" fill="#fff" />
+    </g>
+    </svg>
+    </div>
+   
+    
+    </div>
+ 
+  </body>
+</html>

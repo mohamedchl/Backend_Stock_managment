@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{% static 'css/statistiquecss.css' %}"
+      type="text/css"
+    />
+</head>
+<body>
+    <a href="{% url 'centre_statistiques' %}" style="all: unset"><div class="logo"  onmouseover="document.querySelector('.fa-arrow-rotate-left').style.color='rgba(255, 255, 255, 0.39)';
+        this.style.color='rgba(255, 255, 255, 0.39)';"onmouseout="document.querySelector('.fa-arrow-rotate-left').style.color='rgb(255, 255, 255)';
+        this.style.color='rgb(255, 255, 255)'; " style=" position: absolute;
+            top: 0;
+            left: 0;
+            
+            cursor: pointer;
+            text-wrap: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            font-family: 'Bubblegum Sans', sans-serif;
+            color: rgb(255, 255, 255);
+            font-size: 1.2rem;
+            background-color: transparent;
+            border-radius: 30px;
+            transition: 0.2s;
+            font-weight: 100;
+            margin-left: 28px;
+            width: 10%;
+            margin-top: 10px;"><i class="fa-solid fa-arrow-rotate-left" style="font-size: 1.3rem;color: white; margin-right: 10px;"></i>page precedente</div></a>
+    <a href="{% url 'magazinier' %}" style="all: unset"><div class="logo"  onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.39)';"onmouseout="this.style.backgroundColor='transparent'; " style=" position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        text-wrap: nowrap;
+        padding: 10px;
+        font-family: 'Bubblegum Sans', sans-serif;
+        color: rgb(255, 255, 255);
+        font-size: 1.5rem;
+        background-color: transparent;
+        border-radius: 30px;
+        transition: 0.8s;
+        width: 20%;
+        margin-top: 10px;"><i class="fa-solid fa-store" style="font-size: 1.5rem;color: white; margin-right: 10px;"></i>votre store virtuel</div></a>
+      
+    <h1 style="text-align: center; margin: 40px; margin-top: 100px;" >Les Bénifices de centre {{numC}}</h1>
+    <h3 style="margin: 40px;">Le total des salaire : <span style="color:rgb(68, 242, 175) ;">{{ salaire }}</span> DA</h3>
+    <h3 style="margin: 40px;">Le total des massrouf : <span style="color:rgb(68, 242, 175) ;">{{ massrouf }}</span> DA</h3>
+    <h3 style="margin: 40px;">Le total des ventes : <span style="color:rgb(68, 242, 175) ;">{{ transfers }}</span> DA</h3>
+    <h3 style="margin: 40px;">Le total des transfers : <span style="color:rgb(68, 242, 175) ;">{{ ventes }}</span> DA</h3>
+    <h3 style="margin: 40px;">Les bénifices de centre {{numC}} à {{month}} : <span style="color:rgb(68, 242, 175) ;">{{ benifices }}</span> DA</h3>
+</body>
+</html>

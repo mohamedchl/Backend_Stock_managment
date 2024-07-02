@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voir l'achat</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleModal.css' %}">
+    <script src="{% static 'js/ListeAchat.js' %}"></script>
+    <script>
+        function toggleInputType() {
+            var filterType = document.getElementById('filter_type');
+            var chercherInput = document.getElementById('chercher');
+  
+            if (filterType.value === 'date') {
+                chercherInput.type = 'date';
+            } else {
+                chercherInput.type = 'text';
+            }
+        }
+  
+        window.onload = function () {
+            toggleInputType(); // Set initial input type
+            document.getElementById('filter_type').addEventListener('change', toggleInputType);
+        };
+    </script>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{% static 'css/list.css' %}"
+      type="text/css"
+    />
+</head>
+<body>
+    <a href="{% url 'choisir_option_achat' %}" style="all: unset"><div class="logo"  onmouseover="document.querySelector('.fa-arrow-rotate-left').style.color='rgba(255, 255, 255, 0.39)';
+        this.style.color='rgba(255, 255, 255, 0.39)';"onmouseout="document.querySelector('.fa-arrow-rotate-left').style.color='rgb(255, 255, 255)';
+        this.style.color='rgb(255, 255, 255)'; " style=" position: absolute;
+            top: 0;
+            left: 0;
+            
+            cursor: pointer;
+            text-wrap: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            font-family: 'Bubblegum Sans', sans-serif;
+            color: rgb(255, 255, 255);
+            font-size: 1.2rem;
+            background-color: transparent;
+            border-radius: 30px;
+            transition: 0.2s;
+            font-weight: 100;
+            margin-left: 28px;
+            width: 10%;
+            margin-top: 10px;"><i class="fa-solid fa-arrow-rotate-left" style="font-size: 1.3rem;color: white; margin-right: 10px;"></i>page precedente</div></a>
+    <a href="{% url 'magazinier' %}" style="all: unset"><div class="logo"  onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.39)';"onmouseout="this.style.backgroundColor='transparent'; " style=" position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        text-wrap: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        font-family: 'Bubblegum Sans', sans-serif;
+        color: rgb(255, 255, 255);
+        font-size: 1.5rem;
+        background-color: transparent;
+        border-radius: 30px;
+        transition: 0.8s;
+        font-weight: 100;
+        width: 20%;
+        margin-top: 10px;"><i class="fa-solid fa-store" style="font-size: 1.5rem;color: white; 
+        margin-right: 10px;"></i>votre store virtuel</div></a>
+    <h4>La liste des achats des matiéres primaires :</h4>
+    <form method="GET" action="{% url 'listeAchatsMP' %}">
+        <label for="filter_type">Choisir le type de filtre :</label>
+        <div class="custom-select">
+        <select id="filter_type" name="filter_type">
+            <option value="date">Filtrer par date</option>
+            <option value="fournisseur">Filtrer par fournisseur</option>
+            <option value="produit">Filtrer par produit</option>
+          </select>
+          <span class="arrow"></span>
+        </div>
+      
+        <label for="chercher">Entre l'information :</label>
+        <input type="text" id="chercher" name="chercher" placeholder="Ecrire..." >
+      
+        <button type="submit">Filtrer<i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    <table >
+        <tr class="table-info">
+            <th>Date d'achat</th>
+            <th>Nom de produit</th>
+            <th>la Quantité de produit</th>
+            <th>Nom de fournisseur</th>
+            <th>la montant d'achat</th>
+            <th>la montant payé d'achat</th>
+            <th>le solde de fournisseur</th>
+            <th>Supprimer</th>
+        </tr>
+        {% for a in achat %}
+         <tr>
+         <td>{{a.Date_achat}}</td>
+         <td> {{a.Produit_Fournisseur.nomP}} </td>
+         <td> {{a.qte}} </td>
+         <td> {{a.Fournisseur.nomF}} </td>
+         <td> {{a.Montant_achat}} </td>
+         <td> {{a.Montant_payé}} </td>
+         <td> {{a.sold_achat}} </td>
+         <td><a href="#" class="btn btn-outline-danger"  onclick="confirmDelete('{{a.id}}')">Supprimer</a></td>
+         </tr> 
+         {% endfor %}
+        </table>
+        <div class="confirmation-modal" id="confirmationModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Etes-vous sur de supprimer cette achat ?</p>
+                <button class="confirm-button">Supprimer</button>
+                <button class="cancel-button">Annuler</button>
+            </div>
+        </div>
+        <a href="#" type="button" onclick="printProducts()" class="btn btn-outline-info" style="margin: 20px;">Imprimer la liste</a>
+
+</body>
+</html>

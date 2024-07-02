@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Mitr:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    
+}
+body{
+    background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+   
+  
+
+}
+
+h4 { margin: 30px;margin-top: 110px;    font-size: 30px;font-weight: bold;
+}
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+   
+   
+}
+.custom-select {
+    
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+  }
+  
+  .custom-select select {
+    appearance: none;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #2180BD;
+    border-radius: 6px;
+    color: #2180BD;
+    transition: border-color 0.3s ease;
+    width: 200px; 
+  }
+  option {
+    color: #2180BD;
+  }
+  .custom-select .arrow {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #2180BD;
+    pointer-events: none;
+  }
+  
+  .custom-select:hover select {
+    border-color: #165F87;
+  }
+  
+  .custom-select select:focus {
+    outline: none;
+    border-color: #165F87;
+    box-shadow: 0 0 0 2px rgba(33, 128, 189, 0.3);
+  }
+  
+  form label {
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #ffffff;
+  }
+  
+  form input[type="text"],
+  form input[type="date"],
+  form input[type="day"],
+  form input[type="month"],
+  form input[type="year"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #2180BD;
+    border-radius: 6px;
+    color: #2180BD;
+    transition: border-color 0.3s ease;
+    width: 200px; 
+  }
+  form input[type="text"]:focus,
+  form input[type="date"]:focus,
+  form input[type="day"]:focus,
+  form input[type="month"]:focus,
+  form input[type="year"]:focus {
+    outline: none;
+    border-color: #165F87;
+    box-shadow: 0 0 0 2px rgba(33, 128, 189, 0.3);
+  }
+  
+  form button[type="submit"] {
+  margin-left: 9px;
+    width: 130px;
+  height: 35px;
+  font-weight: bold;
+
+  letter-spacing: 2.5px;
+ 
+  color: rgb(30,48,80);
+  background-color: #fff;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: rgb(42, 148, 214); 
+
+  color: #fff;
+  transform: translateY(-3px);
+  }
+  form button[type="submit"] i {
+    color: rgb(30,48,80);
+    margin-left: 5px;
+  }
+  form button[type="submit"]:hover i{
+    color: #fff;
+  }
+  
+  table {
+    margin-bottom: 10px;
+    width: 96%;
+    background-color: rgba(240, 240, 240, 0.87);
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 8px;
+    
+  }
+  
+  th, td {
+    padding: 11px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(30,48,80);
+    
+    
+  }
+  .messages{
+    margin-top: 15px;
+    margin-bottom: 0px;
+  }
+  p{ font-weight: bold;
+    font-size: 16px;
+    color: rgb(30,48,80);}
+
+  th {
+    background-color: rgba(159, 159, 159, 0.2);
+    text-transform: uppercase;
+  }
+  
+  td {
+    border-bottom: solid 2px rgba(5, 5, 5, 0.1);
+  }
+  
+  tr:hover {
+    background-color: rgba(45, 45, 45, 0.05);
+  }
+  
+  
