@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME</title>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{% static 'css/styleresp.css' %}"
+      type="text/css"
+    />
+</head>
+<body>
+    <div class="header">
+
+        <nav><div class="logo"><i class="fa-solid fa-store" style="color: white; margin-right: 10px;"></i>votre store virtuel</div>
+        </nav>
+        <div class="inner-header flex">
+        <h1>Bonjour Responsable!</h1>
+        <p>Quel est votre centre ?</p>
+        </div>
+        <div class="content flex">
+          <a href="{% url 'gestion_responsable' selected_center=1 %} ">centre 1</a>
+          <a href="{% url 'gestion_responsable' selected_center=2 %} " >centre 2</a>
+          <a href="{% url 'gestion_responsable' selected_center=3 %} " >centre 3</a>
+        </div>
+      
+</body>
+</html>

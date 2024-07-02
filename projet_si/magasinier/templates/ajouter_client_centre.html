@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter Employe</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+<body style=" background: linear-gradient(60deg,  #25c481, #25b7c4);">
+    <div class="background">
+        <a href="{% url 'choose_client_centre' selected_center %}" style="all: unset"><div class="logo"  onmouseover="document.querySelector('.fa-arrow-rotate-left').style.color='rgba(255, 255, 255, 0.39)';
+            this.style.color='rgba(255, 255, 255, 0.39)';"onmouseout="document.querySelector('.fa-arrow-rotate-left').style.color='rgb(255, 255, 255)';
+            this.style.color='rgb(255, 255, 255)'; " style=" position: absolute;
+                top: 0;
+                left: 0;
+                
+                cursor: pointer;
+                text-wrap: nowrap;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 6px;
+                font-family: 'Bubblegum Sans', sans-serif;
+                color: rgb(255, 255, 255);
+                font-size: 1.2rem;
+                background-color: transparent;
+                border-radius: 30px;
+                transition: 0.2s;
+                font-weight: 100;
+                margin-left: 28px;
+                width: 10%;
+                margin-top: 10px;"><i class="fa-solid fa-arrow-rotate-left" style="font-size: 1.3rem;color: white; margin-right: 10px;"></i>page precedente</div></a>
+        <a href="{% url 'gestion_responsable' selected_center %}" style="all: unset" class="title"><div class="logo"  onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.39)';"onmouseout="this.style.backgroundColor='transparent'; " style=" position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            text-wrap: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            font-family: 'Bubblegum Sans', sans-serif;
+            color: rgb(255, 255, 255);
+            font-size: 1.5rem;
+            background-color: transparent;
+            border-radius: 30px;
+            transition: 0.8s;
+            width: 20%;
+            margin-top: 10px;"><i class="fa-solid fa-store" style="font-size: 1.5rem;color: white; 
+            margin-right: 10px;"></i>votre store virtuel</div></a>
+
+        <div class="container">
+            <h4>Ajouter un Employé dans la liste :</h4>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Valider" class="submit">
+            </form>
+            <p style="margin-left: 40px; color: rgb(40, 89, 124) ;">{% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li style="color: aliceblue;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}</p>
+        </div>
+    </div>
+</body>
+</html>

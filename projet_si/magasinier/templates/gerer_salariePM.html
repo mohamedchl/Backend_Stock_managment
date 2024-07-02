@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les salaires des employés par mois</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleModal.css' %}">
+    <script src="{% static 'js/ListeRapport.js' %}"></script>
+    <script>
+        function toggleInputType() {
+            var filterType = document.getElementById('filter_type');
+            var chercherInput = document.getElementById('chercher');
+  
+            if (filterType.value === 'mois') {
+                chercherInput.type = 'month';
+            } else {
+                chercherInput.type = 'text';
+            }
+        }
+  
+        window.onload = function () {
+            toggleInputType(); // Set initial input type
+            document.getElementById('filter_type').addEventListener('change', toggleInputType);
+        };
+    </script>
+<link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link
+  rel="stylesheet"
+  href="{% static 'css/list.css' %}"
+  type="text/css"
+/>
+</head>
+<body>
+    <a href="{% url 'gerer_centres' %}" style="all: unset"><div class="logo"  onmouseover="document.querySelector('.fa-arrow-rotate-left').style.color='rgba(255, 255, 255, 0.39)';
+        this.style.color='rgba(255, 255, 255, 0.39)';"onmouseout="document.querySelector('.fa-arrow-rotate-left').style.color='rgb(255, 255, 255)';
+        this.style.color='rgb(255, 255, 255)'; " style=" position: absolute;
+            top: 0;
+            left: 0;
+            
+            cursor: pointer;
+            text-wrap: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            font-family: 'Bubblegum Sans', sans-serif;
+            color: rgb(255, 255, 255);
+            font-size: 1.2rem;
+            background-color: transparent;
+            border-radius: 30px;
+            transition: 0.2s;
+            font-weight: 100;
+            margin-left: 28px;
+            width: 10%;
+            margin-top: 10px;"><i class="fa-solid fa-arrow-rotate-left" style="font-size: 1.3rem;color: white; margin-right: 10px;"></i>page precedente</div></a>
+<a href="{% url 'magazinier' %}" style="all: unset"><div class="logo"  onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.39)';"onmouseout="this.style.backgroundColor='transparent'; " style=" position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    font-family: 'Bubblegum Sans', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    background-color: transparent;
+    font-weight: 100;
+    border-radius: 30px;
+    transition: 0.8s;
+    width: 20%;
+    margin-top: 10px;"><i class="fa-solid fa-store" style="font-size: 1.5rem;color: white; margin-right: 10px;"></i>votre store virtuel</div></a>
+    <h4>Les salaires des employés par mois :</h4>
+    <form method="GET" action="{% url 'gerer_salariePM' %}">
+        <label for="filter_type">Choisir le type de filtre :</label>
+        <div class="custom-select">
+          <select id="filter_type" name="filter_type">
+            <option value="mois">Filtrer par mois</option>
+            <option value="centre">Filtrer par centre</option>
+            <option value="employe">Filtrer par employé</option>
+         </select>
+          <span class="arrow"></span>
+        </div>
+      
+        <label for="chercher">Entre l'information :</label>
+        <input type="text" id="chercher" name="chercher" placeholder="Ecrire..." style=" padding: 8px;
+        font-size: 16px;
+        border: 2px solid #2180BD;
+        border-radius: 6px;
+        color: #2180BD;
+        transition: border-color 0.3s ease;
+        width: 200px; ">
+      
+        <button type="submit">Filtrer<i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    {% for year, months in salaries_dict.items %}
+        <h3 style="font-weight: bold;margin-top: 15px;margin-bottom: 5px;"> L'année {{ year }}:</h3>
+
+        <table >
+            <tr class="table-info">
+                <th>Nom de l'employé</th>
+                <th>Centre de l'employé</th>
+                <th>Total de massrouf</th>
+                <th>Total des absences</th>
+                <th>Salarie per jour</th>
+                <th>Salaire total</th>
+            </tr>
+            {% for month, employees in months.items %}
+            <tr class="table-success">
+                <th colspan="7" class="text-center">{{ month }}</th>
+            </tr>
+                {% for data in employees %}
+                    <tr>
+                        <td>{{ data.employee.name }}</td>
+                        <td>{{ data.employee.centre }}</td> 
+                        <td>{{ data.total_massrouf }}</td>
+                        <td>{{ data.absences_count }}</td>
+                        <td>{{ data.salary_per_day }}</td>
+                        <td>{{ data.salary }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    {% endfor %}
+    <a href="#" type="button" onclick="printProducts()" class="btn btn-outline-info" style="margin: 20px;">Imprimer la liste</a>
+
+</body>
+</html>

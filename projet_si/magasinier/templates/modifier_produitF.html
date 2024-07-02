@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Produit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+
+</head>
+<body class="p-3">
+    <a href="{% url 'magazinier' %}" style="all: unset" class="title"><div class="logo"  onmouseover="this.style.backgroundColor='rgba(255, 255, 255, 0.39)';"onmouseout="this.style.backgroundColor='transparent'; " style=" position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        text-wrap: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        font-family: 'Bubblegum Sans', sans-serif;
+        color: rgb(255, 255, 255);
+        font-size: 1.5rem;
+        background-color: transparent;
+        border-radius: 30px;
+        transition: 0.8s;
+        width: 20%;
+        margin-top: 10px;"><i class="fa-solid fa-store" style="font-size: 1.5rem;color: white; 
+        margin-right: 10px;"></i>votre store virtuel</div></a>
+    <div class="container">
+        <h4>Modifier le Produit "{{produit.nomP}}" de fournisseur {{fournisseur.nomF}}</h4>
+
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p}}
+
+<a href=" {% url 'listeProduit_fournisseur' fournisseur.id %}" class="btn btn-secondary" style="position: relative; top: 30px; left: 20px;">Annuler</a>
+<input type="submit" value="Modifier" class="submit" style="
+    background-color: green;
+    border-radius: 12px;
+    border: 2px solid green;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-left: 130px;
+    position: relative; bottom: 20px;
+    outline: 0;
+    text-align: center;
+    width: 60%;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  ">
+</form>
+
+</div>
+</body>
+</html>
